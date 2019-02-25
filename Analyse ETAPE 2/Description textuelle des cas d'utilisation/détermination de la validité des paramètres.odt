@@ -1,0 +1,22 @@
+﻿Nom : Détermination de la validité des parametres
+Description : Le système determine si les paramètres du trajet sont valides ou non.
+Acteurs : L’utilisateur.
+Contexte : Le système doit déterminer si les parametres du trajet sont valides pour déterminer si le trajet choisi est valide ou non.
+Entrées et préconditions : Les paramètres non null.
+Sorties et postconditions : Renvoie vrai si les parametres sont valides, faux sinon.
+Extension : Nom : Destination Valide(Ville d’arrivée)
+		point de rattachement : Détermine si la ville de destination est 		valide, bien différente de la ville de départ
+		Etapes principales de l’extension : 1) Vérifie que la ville de 			destination est enregistré dans la base de données et qu’elle est 		différente de la ville de départ.
+			
+
+Scénario principal :
+
+1) L’utilisateur choisit et saisi les paramètres.
+2) Le système détermine alors le meileur trajet possible.
+3) Le système affiche alors le trajet, ainsi que tous les calculs qui ont été effectué sur le temps de parcours, la distance, le volume d’essence consommé et le prix à payer.
+
+Scénario d’erreur :
+1)a) La ville de départ et d’arrivée sont identiques : Pas de trajet possible, car ces 2 villes doivent etre différentes. Reprise en 1.
+
+3)b) Le prix dépasse celui imposé par l’utilisateur. Reprise en 2 pour recalculer un trajet qui respecte au mieux la contrainte. Si ce n’est pas possible, notifie l’utilisateur.
+

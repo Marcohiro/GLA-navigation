@@ -1,0 +1,18 @@
+﻿Nom : enregistrer historique
+Description : Le système enregistre le trajet effectué, avec les paramètres, le véhicule et le trajet.
+Acteurs : L’utilisateur.
+Contexte : L’utilisateur, une fois arrivé à destination, autorise ou non le système a enregistrer le trajet effectué.
+Entrées et préconditions : Trajet, véhicule, paramètres. Il faut que le trajet ait été effectué correctement.
+Sorties et postconditions : Pas de sortie, enregistre juste les données dans l’historique si autorisé.
+
+Scénario principal :
+
+1) L’utilisateur confirme au système qu’il est arrivé à destination.
+2) Le système demande l’autorisation d’enregistrer ou non ce trajet dans l’historique.
+3) Si oui, le système enregistre effectivement dans l’historique. Ne fait rien sinon.
+4) Sortie du navigateur.
+
+Scénario d’erreur :
+3)a) Enregistre si l’utilisateur a refusé. Dans ce cas, supprime, reprise en 4).
+
+3)b) Le système n’enregistre pas, alors que l’utilisateur a voulu que ce soit enregistré. Le système enregistre alors dans l’historique. Reprise en 4)

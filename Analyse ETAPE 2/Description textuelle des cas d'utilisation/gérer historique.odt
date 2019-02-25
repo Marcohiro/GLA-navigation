@@ -1,0 +1,22 @@
+﻿Nom : Consulter l’historique
+Description : L’utilisateur consulte son historique de trajets, de véhicules et de paramètres
+Acteurs : L’utilisateur
+Contexte : L’utilisateur vérifie tous les trajets effectués avec quel véhicule en fonction de quels paramètres.
+Entrées et préconditions : Aucune entrée, il faut qu’il y ait un historique déjà crée.
+Sorties et postconditions : Pas de sortie, affiche juste les données.
+Extension: Nom: Relancer Trajet(trajet)
+	     Point de rattachement: Relance un trajet à partir de l’historique.
+	     Etapes principales de l’extension: 1) L’utilisateur choisit un trajet 	     dans l’historique.
+	     2) Le programme relance le trajet sélectionné.		
+	
+
+Scénario principal :
+
+1) L’utilisateur fait appel à la foncitonnalité.
+2) L’historique s’affiche, du plus récent au plus ancien.
+3) Choix de l’affichage dynamique : Du plus récent au plus ancien, inversement, en fonction des paramètres ou alors du trajet.
+4) Fermeture de l’historique.
+
+Scénario d’erreur :
+
+1)a) Il n’y a pas d’historique, donc rien ne s’affiche, l’utilisateur est invité à faire au moins un trajet. Reprise en 4.

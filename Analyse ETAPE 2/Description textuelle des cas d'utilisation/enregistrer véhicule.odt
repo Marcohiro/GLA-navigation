@@ -1,0 +1,20 @@
+﻿Nom : Enregistrer véhicule
+Description : L’utilasateur enregistre un véhicule
+Acteurs : L’utilisateur
+Contexte : L’utilisateur, enregistré ou non, a cliqué sur cette fonctionalité
+Entrées et préconditions : L’utilasateur a bien renseigné le gabarit et le type d’essence du véhicule. Ce véhicule ne doit pas avoir déjà été enregistré.
+Sorties et postconditions : Nouvel objet “Véhicule” créé, et bien enregistré dans les paramètres. Il faut que le véhicule soit bien intégré dans l’historique.
+
+
+Scénario principal :
+
+1) L’utilisateur rentre le gabarit du véhicule.
+2) L’utilisateur saisit le type de carburant.
+3) Le système vérifie que le véhicule n’est pas déjà enregistré dans l’historique.
+4) Le système enregistre le véhicule saisit par l’utilisateur.
+5) Le système permet la suite des choix du trajet.
+
+Scénario d’erreur (a):
+3)a) Si le véhicule a déjà été enregistré, alors ne l’enregistre pas et le signale à l’utilisateur, pour qu’il le choissise directement dans l’historique. Reprise à 5
+
+

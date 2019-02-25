@@ -1,0 +1,22 @@
+﻿Nom : Détermination du trajet
+Description : Le système determine le meilleur trajet en fonction des paramètres.
+Acteurs : L’utilisateur.
+Contexte : Le système essaie de choisir le trajet correspondant au mieux aux contraintes imposées par l’utilisateur, en fonction des paramètres saisis.
+Entrées et préconditions : Ville de départ, ville d’arrivée, les paramètres.
+Sorties et postconditions : Pas de sortie, affiche le trajet, avec les villes à parcourir, pareillement pour les routes, ainsi qu’une estimation du temps de trajet, de la distance à parcourir et du volume d’essence consommé et de CO2 expulsé. 
+Extension : Nom : Calcul (Distance, temps, cO2, argent….)
+		point de rattachement : Effectue les calculs pour et du trajet
+		Etapes principales de l’extension : 1) Effectue tous les calculs.
+			
+
+Scénario principal :
+
+1) L’utilisateur choisit et saisi les paramètres.
+2) Le système détermine alors le meileur trajet possible.
+3) Le système affiche alors le trajet, ainsi que tous les calculs qui ont été effectué sur le temps de parcours, la distance, le volume d’essence consommé et le prix à payer.
+
+Scénario d’erreur :
+1)a) La ville de départ et d’arrivée sont identiques : Pas de trajet possible, car ces 2 villes doivent etre différentes. Reprise en 1.
+
+3)b) Le prix dépasse celui imposé par l’utilisateur. Reprise en 2 pour recalculer un trajet qui respecte au mieux la contrainte. Si ce n’est pas possible, notifie l’utilisateur.
+
