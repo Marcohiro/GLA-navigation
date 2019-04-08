@@ -1,0 +1,2 @@
+Graphe de troncons plutot que graphe des routes : plus souple pour la programmation, pour le tracé des graphes.
+Modification de la classe route : séparation avec la classe tronçon pour respecter les contraintes des fichiers XML.
