@@ -1,0 +1,416 @@
+﻿Conception du graphe:
+Graphe de troncons plutot que graphe des routes : plus souple pour la programmation, pour le tracé des graphes.
+Modification de la classe route : séparation avec la classe tronçon pour respecter les contraintes des fichiers XML.
+
+Scenario d’utilisation:
+C’est un scenario d’utilisations de plusieurs fonctions s’enchainant dans un ordre logique, dans le cadre d’une utilisation normale de l’application.
+
+
+Fonctions de la classe Utilisateur:
+
+
+Utilisateur saisirVehicule:
+Fonction qui permet la saisie de véhicules.
+
+pré conditions:
+-gabarit != null ∧ essence != null ∧ nom != null 
+
+déroulement:
+Cree un nouveau vehicule en fonction des données saisies, si celui-ci n’existe pas déjà dans l’Historique.
+
+post condition:
+-Renvoie v, un nouveau véhicule, s’il n’existe pas dans l’Historique, null sinon. Ne modifie rien dans les autres classes.
+
+
+Utilisateur saisirParametres:
+Fonction qui permet la saisie de parametres.
+
+Pré conditions:
+-prixMax >= 0 ∧ volumeCO2 >= 0 ∧ (rapideDuree == faux ∧ disancePluscourte == vrai) ∨ (rapideDuree == vrai ∧ disancePluscourte == faux))
+
+Déroulement:
+Cree de nouveaux parametres si ceux-ci n’existent déjà pas dans l’Historique.
+
+Post conditions:
+-Renvoie p, un nouveau parametres, s’il n’existe pas dans l’historique, null sinon. Ne modifie rien dans les autres classes.
+
+
+
+
+
+
+
+
+
+
+Utilisateur saisirTrajet:
+Fonction qui permet de saisir le trajet, à partir de parametres, d’une ville de départ et d’arrivée.
+ 
+pré condition:
+
+déroulement:
+
+Post condition:
+
+Utilisateur consulterHistorique:
+Fonction qui permet à l’utilisateur de consulter son historique.
+ 
+pré condition:
+
+déroulement:
+
+Post condition:
+
+Utilisateur supprimerHistorique:
+Fonction qui permet à l’utilisateur de supprimer une partie de son historique, ou entièrement.
+ 
+pré condition:
+
+déroulement:
+
+Post condition:
+
+Utilisateur modifierHistorique:
+Fonction qui permet à l’utilisateur de modifier son historique.
+ 
+pré condition:
+
+déroulement:
+
+Post condition:
+
+
+
+Fonctions de la classe Ville:
+
+
+Ville linkedSections: FAIT
+Il s’agit tout simplement d’un geter, pour faciliter l’implémentation.
+
+Pré conditions:
+-La ville existe dans la base de données ∧ la ville a au moins un tronçon de route qui y passe.
+
+Déroulement:
+Pour chaque troncon de route qui passe par la ville, l’ajoute au résultat, sans modifier ni les routes, ni les troncons, ni la ville.
+
+Post conditions:
+-res = Liste des troncons de la ville.
+-La ville, les routes et les troncons ne sont pas modifiées.
+
+Ville estEvitable:
+Fonction qui détermine si elle est présente ou non sur l’un des trajets possibles.
+ 
+pré condition:
+
+déroulement:
+
+Post condition:
+
+
+
+
+
+
+
+
+Fonctions de la classe Troncon:
+
+
+Troncon estEvitable:
+Fonction qui détermine si l’utilisateur n’a pas à passer par ce troncon, I.E n’apparait dans aucun des trajets possibles.
+
+Pré conditions:
+
+Déroulement:
+
+post condition:
+
+
+
+
+
+Troncon prixAPayer: 
+Il s’agit tout simplement d’un geter, pour faciliter l’implémentation.
+
+pré conditions:
+-Le troncon doit etre valide.
+-prix indiqué >= 0.
+
+Déroulement:
+Renvoie le prix à payer du troncon.
+
+post conditions:
+res = prix a payer du troncon.
+
+
+Fonction de la classe Route:
+
+
+Route prixTotal: FAIT
+Dans le cas où le trajet ne passe que par une route, pour faciliter les calculs.
+On favorise cependant plus les calculs sur les troncons.
+
+pré conditions:
+-La route a au moins un troncon.
+
+Déroulement:
+Pour chaque troncon de la route, on ajoute au résultat le prix du troncon, sans modifier la route et le troncon.
+
+post conditions:
+-Res = ∑ des troncons de la route.
+-La route ainsi que ses troncons ne sont pas modifiés.
+
+
+Fonctions de la classe Trajet:
+
+
+Trajet calculerDistance:
+Fonction qui calcule la distance totale du trajet.
+
+Pré conditions:
+
+Déroulement:
+
+Post condition:
+
+
+
+
+
+
+
+Trajet calculerTemps:
+Fonction qui calcule la duree totale du trajet estimée.
+
+Pré condition:
+
+Déroulement:
+
+Post condition:
+
+
+Trajet calculerPrix:
+Fonction qui calcule le prix total du trajet.
+
+Pré condition:
+
+déroulement:
+
+post condition:
+
+
+Trajet calculerVolumeCO2:
+Fonction qui calcule le volume de CO2 du trajet.
+
+Pré condition:
+
+Déroulement:
+
+Post condition:
+
+
+Trajet notifierParametresNonRespectés:
+Comme indiqué dans le cahier des charges, il est possible que les parametres choisis par l’utilisateur ne soient pas valides dès le départ, I.e impossible de trouver un chemin respectant tous les parametres ou lorsqu’il se trompe de trajet.
+
+Pré condition:
+
+déroulement:
+
+post condition:
+
+
+Trajet notifierRouler2Heures: FAIT
+Comme indiqué dans le cahier des charges, l’application se doit de notifier l’utilisateur si celui-ci a roulé plus de  2 Heures, pour qu’il aille se reposer. Cela est basé sur les recommandations officielles des ministères.
+
+pré conditions:
+-Le trajet doit etre en cours.
+
+Déroulement:
+L’appel à cette fonction permet de seulement calculer la durée du trajet en cours. Le trajet ne doit pas etre modifié.
+
+post condition:
+-Res = vrai si l’utilisateur a bien roulé 2 Heures, sinon res = faux. Rien n’est modifié. 
+
+
+
+Trajet retracer: FAIT
+Cette fonction a pour but d’économiser du calcul en évitant de devoir reparcourir la base de données pour effectuer à nouveau ce trajet. 
+
+pré condition:
+-Le trajet doit déjà exister dans l’historique de l’utilisateur (On suppose que le trajet saisi est valide)
+-Le véhicule ainsi que les parametres utilises doivent etre les memes.
+
+déroulement:
+L’application retrace le trajet, en utilisant lse memes parametres, memes routes, troncons et villes parcourus.
+
+post condition:
+-L’application retrace le trajet, sans modifier l’historique, le trajet demandé ou les parametres.
+
+
+Trajet retracerInverse: FAIT
+Comme pour la fonction retracer, le but de cette fonction est d’économiser du calcul et de la mémoire en récupérant les données d’un trajet qui a déjà été effectué.
+
+pré condition:
+-Le trajet saisi est valide.
+-Le trajet est l’inverse d’un trajet déjà effectué et enregistré dans l’Historique.
+
+Déroulement:
+Le programme retrace le trajet inverse, sans modifier l’Historique.
+
+post condition:
+Le trajet inverse est tracé. L’historique n’est pas modifié.
+
+
+
+
+
+
+Trajet estLInverse: FAIT
+Cette fonction sert à faciliter l’implémentation de la fonction retracerInverse.
+ 
+pré conditions:
+-Les 2 trajets sont valides.
+
+Déroulement:
+Le programme vérifie que les 2 trajets ont bien le memes parametres, ainsi que des villes de depart et d’arrivée inversés.
+
+post conditions:
+Renvoie vrai si les 2 trajets ont bien les memes parametres et si les villes de départ et d’arrivée sont inversés, faux sinon.
+
+Trajet enregistrerDansHistorique:
+Fonction qui permet d’enregistrer le trajet dans l’Historique.
+
+Pré condition:
+
+Déroulement:
+
+post condition:
+
+
+Fonctions de la classe parametres:
+
+
+Parametres echanger: FAIT
+Fonction qui permet d’échanger les paramètres booléens distancePlusCourte et rapideDuree, puisque les 2 ne peuvent pas etre vraies en meme temps. Cela est utile dans le cas où l’utilisateur se trompe de chemin, ce qui fait que l’un ou l’autre des parametres ne peut plus etre respecté.
+
+Pré condition:
+-(1)rapideDuree est faux et distancePlusCourte est vrai OU (2)rapideDuree est vrai et distancePlusCourte est faux.
+
+Déroulement:
+L’attribut qui est faux devient vrai, alors que celui qui était vrai devient faux.
+
+Post condition:
+-Si cas (1), alors rapideDuree = vrai et distancePlusCourte = faux.
+-Si cas (2), alors rapideDuree = faux et distancePlusCourte = vrai.
+Les autres attributs de la classe parametres, ainsi que le trajet, ne sont pas modifiés.
+
+Parametres toString: Pas de détails supplémentaires à fournir pour ce genre de fonction.
+Fonctions qui facilite l’affichage.
+
+
+Fonctions de la classe véhicule:
+
+
+Vehicule toString: Pas de détails supplémentaires à fournir pour ce genre de fonction.
+Fonctions qui facilite l’affichage.
+
+Vehicule modifierGabarit:
+Fonction qui permet de modifier le gabarit d’un véhicule.
+ 
+pré condition:
+
+déroulement:
+
+Post condition:
+
+Vehicule modifierCarburant:
+Fonction qui permet de modifier le type de carburant d’un véhicule.
+ 
+pré condition:
+
+déroulement:
+
+Post condition:
+
+Vehicule modifierNom:
+Fonction qui permet de modifier le nom d’un véhicule.
+ 
+pré condition:
+
+déroulement:
+
+Post condition:
+
+
+
+
+
+Fonctions de la classe Historique:
+
+
+Historique enregistrerParametres:
+Fonction qui permet d’enregistrer un parametres enregistré dans l’historique.
+ 
+pré condition:
+
+déroulement:
+
+Post condition:
+
+Historique enregistrerVehicule:
+Fonction qui permet d’enregistrer un véhicule enregistré dans l’historique.
+ 
+pré condition:
+
+déroulement:
+
+Post condition:
+
+Historique supprimerParametres:
+Fonction qui permet de supprimer un parametres enregistré dans l’historique.
+ 
+pré condition:
+
+déroulement:
+
+Post condition:
+
+Historique supprimerVehicule:
+Fonction qui permet de supprimer un véhicule enregistré dans l’historique.
+ 
+pré condition:
+
+déroulement:
+
+Post condition:
+
+Historique modifierParametres:
+Fonction qui permet de modifier un parametres enregistré dans l’historique.
+ 
+pré condition:
+
+déroulement:
+
+Post condition:
+
+Historique modifierVehicule:
+Fonction qui permet de modifier un véhicule enregistré dans l’historique.
+ 
+pré condition:
+
+déroulement:
+
+Post condition:
+
+Historique toString: Pas de détails supplémentaires à fournir pour ce genre de fonction.
+Fonctions qui facilite l’affichage.
+
+Historique supprimerTrajet:
+Fonction qui permet de supprimer un élément de l’historique.
+
+Pré condition:
+
+déroulement:
+
+Post condition:
+
