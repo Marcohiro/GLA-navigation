@@ -37,47 +37,54 @@ Post conditions:
 
 
 
-
-
-
-
-
-
 Utilisateur saisirTrajet:
 Fonction qui permet de saisir le trajet, à partir de parametres, d’une ville de départ et d’arrivée.
  
 pré condition:
+-villeDeDepart.exists() ∧ villeDArrivee.exists() ∧ !Utilisateur.Historique.contains(Parametres)
 
 déroulement:
+Crée un trajet suivant les paramètres de la ville de départ vers la ville d'arrivee. 
+Si le trajet n'existe pas l'ajoute dans l'Historique. Sinon, appelle la méthode retracer().
 
 Post condition:
+-if(Utilisateur.Historique.contains(Trajet)) then Trajet.retracer else Utilisateur.Historique.Add(Trajet)
 
 Utilisateur consulterHistorique:
 Fonction qui permet à l’utilisateur de consulter son historique.
  
 pré condition:
+-Utilisateur.Historique.lenght() >= 0 L'Historique peut être vide. La taille ne peut pas être négative.
 
 déroulement:
+Pour chaque élément contenu dans l'Historique, l'affiche. Aucun élémént n'est modifié.
 
 Post condition:
+-La méthode s'arrêtte une fois l'Historique entièrement parcouru. Rien n'est modifié.
 
 Utilisateur supprimerHistorique:
 Fonction qui permet à l’utilisateur de supprimer une partie de son historique, ou entièrement.
  
 pré condition:
+-Utilisateur.Historique.length() > 0. L'Historique doit contenir au moins un élément.
 
 déroulement:
+L'utilisateur choisi un élément à supprimer de l'Historique. Le système le supprime alors.
 
 Post condition:
+-Utilisateur.Historique.length()--. Le reste n'est pas modifié.
 
 Utilisateur modifierHistorique:
 Fonction qui permet à l’utilisateur de modifier son historique.
  
 pré condition:
+-Utilisateur.Historique.length() > 0
 
 déroulement:
+L'utilisateur sélectionne un élément de l'Historique et le modifie.
 
 Post condition:
+-L'élément est bien modifié, le reste de l'Historique n'est pas modifié.
 
 
 
@@ -99,16 +106,18 @@ Post conditions:
 
 Ville estEvitable:
 Fonction qui détermine si elle est présente ou non sur l’un des trajets possibles.
+On suppose que MAP est le graphe du système.
  
 pré condition:
+-Map.contains(Ville)
 
 déroulement:
+Vérifie parmis tous les trajets possibles que la ville n'apparaît pas une fois.
 
 Post condition:
-
-
-
-
+-For(Trajets t : Trajets[] possibles){
+  if(t.contains(Ville)) then true
+ } else false
 
 
 
@@ -118,14 +127,18 @@ Fonctions de la classe Troncon:
 
 Troncon estEvitable:
 Fonction qui détermine si l’utilisateur n’a pas à passer par ce troncon, I.E n’apparait dans aucun des trajets possibles.
+On suppose que MAP est le graphe du système.
 
 Pré conditions:
+-Map.contains(Troncon)
 
 Déroulement:
+Vérifie parmis tous les trajets possibles que le troncon n'apparaît pas une fois.
 
 post condition:
-
-
+-For(Trajets t : Trajets[] possibles){
+  if(t.contains(Troncon)) then true
+ } else false
 
 
 
@@ -157,7 +170,7 @@ Déroulement:
 Pour chaque troncon de la route, on ajoute au résultat le prix du troncon, sans modifier la route et le troncon.
 
 post conditions:
--Res = ∑ des troncons de la route.
+-Res = ∑ des prix troncons de la route.
 -La route ainsi que ses troncons ne sont pas modifiés.
 
 
@@ -168,14 +181,13 @@ Trajet calculerDistance:
 Fonction qui calcule la distance totale du trajet.
 
 Pré conditions:
+-Trajet.troncons.length > 0 Le trajet doit contenir au moins un troncon
 
 Déroulement:
+Pour chaque troncon du trajet, on ajoute au résultat la longueur du troncon, sans modifier la route et le troncon.
 
 Post condition:
-
-
-
-
+-Res = ∑ des distances des troncons de la route.
 
 
 
@@ -183,10 +195,13 @@ Trajet calculerTemps:
 Fonction qui calcule la duree totale du trajet estimée.
 
 Pré condition:
+-Trajet.troncons.length > 0 Le trajet doit contenir au moins un troncon
 
 Déroulement:
+Pour chaque troncon du trajet, on ajoute au résultat la longueur du troncon multipliée par sa vitesse, sans modifier la route et le troncon.
 
 Post condition:
+-Res = ∑ des distances des troncons de la route * Troncon.vitesse
 
 
 Trajet calculerPrix:
