@@ -8,6 +8,7 @@ public class Troncon {
 	
 	/* Attributs */
 	private int id;
+	
 	private Ville ville1;
 	private Ville ville2;
 	private int vitesse;
@@ -15,6 +16,8 @@ public class Troncon {
 	private boolean radar;
 	private boolean payant;
 	private int longueur;
+	
+	private int route;
 	
 	/* Constructeur */
 	public Troncon(int id, Ville ville1, Ville ville2, int vitesse, boolean t, boolean r, boolean p, int l) {
@@ -78,6 +81,10 @@ public class Troncon {
 		this.longueur = x;
 	}
 	
+	public void setRoute(int r) {
+		this.route = r;
+	}
+	
 	public Ville getV1() {
 		return this.ville1;
 	}
@@ -86,7 +93,25 @@ public class Troncon {
 		return this.ville2;
 	}
 	
+	public int getVitesse() {
+		return this.vitesse;
+	}
+	
 	public int getLongueur() {
 		return this.longueur;
+	}
+	
+	public int getId() {
+		return this.id;
+	}
+	
+	public int getRoute() {
+		return this.route;
+	}
+	
+	public String toString() {
+		String res = this.getId() + ". ";
+		res+= "[" + this.getV1().getNom() + ", " + this.getV2().getNom() + ", " + this.getLongueur() + "] " + this.getRoute();
+		return res;
 	}
 }

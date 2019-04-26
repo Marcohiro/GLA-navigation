@@ -45,6 +45,10 @@ public class Route {
 		return this.type;
 	}
 	
+	public ArrayList<Troncon> getTroncons() {
+		return this.Troncons;
+	}
+	
 	public String toString() {
 		String res = "";
 		res+= this.getNom() + " | ";

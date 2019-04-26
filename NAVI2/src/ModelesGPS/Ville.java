@@ -73,8 +73,16 @@ public class Ville {
 		return this.coordonnees[1];
 	}
 	
+	public int getId() {
+		return this.id;
+	}
+	
+	/* */
+	
+	
+	/* L'affiche */
 	public String toString() {
-		String res = "";
+		String res = this.getId() + ". ";
 		res+= this.getNom() + " | ";
 		res+= this.getType() + " | ";
 		if (this.touristique) {
