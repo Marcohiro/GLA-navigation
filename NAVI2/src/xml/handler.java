@@ -15,6 +15,7 @@ public class handler extends DefaultHandler{
 	private ArrayList<Ville> villeListe = null;
 	private ArrayList<Route> routeListe = null;
 	private ArrayList<Troncon> tronconListe = null;
+	private ArrayList<Troncon> tronconListeComplete = null;
 	private Ville ville;
 	private Route route;
 	private Troncon troncon;
@@ -30,7 +31,7 @@ public class handler extends DefaultHandler{
 	}
 	
 	public ArrayList<Troncon> getTroncons() {
-		return tronconListe;
+		return tronconListeComplete;
 	}
 	
 	boolean hVille = false;
@@ -59,6 +60,10 @@ public class handler extends DefaultHandler{
 			routeListe = new ArrayList<Route>();
 		}
 		
+		if (tronconListeComplete == null) {
+			tronconListeComplete = new ArrayList<Troncon>();
+		}
+		
 		if (qName.equalsIgnoreCase("ville")) {
 			int idv = this.villeListe.size();
 			ville = new Ville(idv);
@@ -71,7 +76,7 @@ public class handler extends DefaultHandler{
 			hRoute = true;
 		}
 		if (qName.equalsIgnoreCase("troncon")) {
-			int idt = this.tronconListe.size();
+			int idt = this.tronconListeComplete.size();
 			troncon = new Troncon(idt);
 			hTroncon = true;
 		}
@@ -171,7 +176,9 @@ public class handler extends DefaultHandler{
 		}
 		
 		if (qName.equalsIgnoreCase("troncon")) {
+			troncon.setRoute(routeListe.size());
 			tronconListe.add(troncon);
+			tronconListeComplete.add(troncon);
 			hTroncon = false;
 		}
 	}
