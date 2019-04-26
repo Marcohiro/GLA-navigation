@@ -2,28 +2,29 @@ package Autres;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
+import Autres.TronconL;
 import ModelesGPS.Ville;
+import ModelesGPS.Parametres;
 import ModelesGPS.Route;
 import ModelesGPS.Troncon;
 
 public class Calculs {
-	private int[][] matrice;
+	private ArrayList<TronconL>[][] matrice;
 	private ArrayList<Integer>[] liste;
 	
-	public Calculs(ArrayList<Ville> villes, ArrayList<Route> routes) {
-		this.matrice = new int[villes.size()][villes.size()];
-		for (int i = 0; i < matrice.length; i++) {
-			for (int j = 0; j < matrice.length; j++) {
-				matrice[i][j] = Integer.MAX_VALUE;
-			}
+	
+	public Calculs(ArrayList<Ville> villes) {
+		this.matrice = new ArrayList[villes.size()][villes.size()];
+		for (ArrayList<TronconL>[] a : matrice) {
+			Arrays.setAll(a, ArrayList<TronconL> :: new);
 		}
+		
 		this.liste = new ArrayList[villes.size()];
-		Arrays.setAll(liste, ArrayList :: new);
+		Arrays.setAll(liste, ArrayList<Integer> :: new);
 	}
 	
-	public int distanceAerienne(Ville v1, Ville v2) {
+	public static int distanceAerienne(Ville v1, Ville v2) {
 		/* Formule d'Haversine */
 		int rayon = 6371;
 		
@@ -41,9 +42,24 @@ public class Calculs {
 		return (int) Math.round(rayon * c);
 	}
 	
-	public void construireLesDonnees(ArrayList<Ville> villes, ArrayList<Route> routes) {
-		for (Route r : routes) {
+	public void construireLesDonnees(ArrayList<Troncon> troncons, Parametres p) {
+		for (Troncon t : troncons) {
+			//int tmp = this.distanceAerienne(t.getV1(), t.getV2());
+			int tmp;
+			if (p.getDistancePlusCourte()) tmp = t.getLongueur();
+			else tmp = Math.round(t.getLongueur()/t.getVitesse());
 			
+			TronconL tl = new TronconL(t.getId(), tmp);
+			this.matrice[t.getV1().getId()][t.getV2().getId()].add(tl);
+			this.liste[t.getV1().getId()].add(t.getV2().getId());
 		}
+	}
+	
+	public ArrayList<TronconL>[][] getMatrice() {
+		return this.matrice;
+	}
+	
+	public ArrayList<Integer>[] getListe() {
+		return this.liste;
 	}
 }
