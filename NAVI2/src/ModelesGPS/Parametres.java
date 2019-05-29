@@ -4,12 +4,14 @@ public class Parametres {
 	
 	private int prixMax;
 	private int volumeCO;
-	private Boolean distancePlusCourte;
-	private Boolean rapideDuree;	
+	private boolean enregistre; 
+	private boolean distancePlusCourte;
+	private boolean rapideDuree;	
 	
-	public Parametres(int p, int v, boolean dc, boolean rd){
+	public Parametres(int p, int v, boolean enr, boolean dc, boolean rd){
 		this.prixMax = p;
 		this.volumeCO = v;
+		this.enregistre = enr;
 		this.distancePlusCourte = dc;
 		this.rapideDuree = rd;
 	}
@@ -17,11 +19,21 @@ public class Parametres {
 	public Parametres(boolean dc, boolean rd){
 		this.distancePlusCourte = dc;
 		this.rapideDuree = rd;
+		this.enregistre = false;
 	}
 	
 	//Affiche les parametres sous forme de String
 	public boolean getDistancePlusCourte() {
 		return this.distancePlusCourte;
+	}
+	
+	public void echangeHistorique() {
+		if (this.enregistre == false) this.enregistre = true;
+		else this.enregistre = false;
+	}
+	
+	public boolean getEnregistre() {
+		return this.enregistre;
 	}
 	
 	public String toString(){
