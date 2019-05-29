@@ -49,4 +49,22 @@ public class Trajet {
 	public ArrayList<Integer> getItineraire() {
 		return this.tronconParId;
 	}
+	
+	public String trajetToXML(ArrayList<Troncon> troncons, ArrayList<Route> routes) {
+		int count = 0;
+		String content = "<trajet>" + "\n";
+		
+		content += "<ville-depart>" + this.villeDepart.getNom() + "</ville-depart>" + "\n";
+		for (int x : this.tronconParId) {
+			count++;
+			content += "<etape>" + "\n";
+			content += "<numero>" + count + "</numero>" + "\n";
+			content += "<route>" + routes.get(troncons.get(x).getRoute()).getNom() + "</route>" + "\n";
+			content += "<destination>" + troncons.get(x).getV2().getNom() + "</destination>" + "\n";
+			content += "</etape>" + "\n";
+		}
+		content += "<ville-arrivee>" + this.villeArrivee.getNom() + "</ville-arrivee>" + "\n";
+		content += "</trajet>" + "\n";
+		return content;
+	}
 }
