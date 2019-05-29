@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import Algo.AEtoile;
 import Autres.Calculs;
@@ -28,6 +31,7 @@ public class xmlEntree {
 	
 	public static void main(String args[]) {
 		String f1 = "exemple_carte.xml";
+		String f2 = "res_curr.xml";
 		xmlEntree en = new xmlEntree(f1);
 		SAXParserFactory factory = SAXParserFactory.newInstance();
 		try {
@@ -83,5 +87,16 @@ public class xmlEntree {
 			
 		}
 		//System.out.println(c.distanceAerienne(villes.get(0), villes.get(4)));
+		
+		/*================================================================================*/
+		
+		String content = t.trajetToXML(troncons, routes);
+		try (FileWriter writer = new FileWriter(f2);
+			 BufferedWriter bw = new BufferedWriter(writer) ) {
+	        	bw.write(content);
+	    } 
+		catch (IOException e) {
+			System.err.format("IOException: %s%n", e);
+	    }
 	}
 }
