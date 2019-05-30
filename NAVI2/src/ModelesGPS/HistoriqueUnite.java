@@ -1,7 +1,5 @@
 package ModelesGPS;
 
-import java.util.ArrayList;
-
 public class HistoriqueUnite {
 	private Vehicule vehicule;
 	private Trajet trajet;

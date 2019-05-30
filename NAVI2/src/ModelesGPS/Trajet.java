@@ -50,6 +50,14 @@ public class Trajet {
 		return this.tronconParId;
 	}
 	
+	public Ville getVilleDepart() {
+		return this.villeDepart;
+	}
+	
+	public Ville getVilleArrivee() {
+		return this.villeArrivee;
+	}
+	
 	public String trajetToXML(ArrayList<Troncon> troncons, ArrayList<Route> routes) {
 		int count = 0;
 		String content = "<trajet>" + "\n";
