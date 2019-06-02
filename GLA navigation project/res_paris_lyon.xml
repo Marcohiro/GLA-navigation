@@ -1,0 +1,16 @@
+<trajet>
+<ville-depart>paris</ville-depart>
+<etape>
+<numero>1</numero>
+<route>n7</route>
+<destination>evry</destination>
+<etape>
+<numero>2</numero>
+<route>a6</route>
+<destination>auxerre</destination>
+<etape>
+<numero>3</numero>
+<route>a6</route>
+<destination>lyon</destination>
+<ville-arrivee>lyon</ville-arrivee>
+</trajet>

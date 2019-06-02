@@ -1,0 +1,16 @@
+<trajet>
+<ville-depart>paris</ville-depart>
+<etape>
+<numero>1</numero>
+<route>a6</route>
+<destination>wissous</destination>
+<etape>
+<numero>2</numero>
+<route>a10</route>
+<destination>clermont-ferrand</destination>
+<etape>
+<numero>3</numero>
+<route>a75</route>
+<destination>ceyras</destination>
+<ville-arrivee>ceyras</ville-arrivee>
+</trajet>
