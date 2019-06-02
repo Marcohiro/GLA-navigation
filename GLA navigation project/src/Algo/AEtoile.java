@@ -90,7 +90,7 @@ public class AEtoile {
 	}
 	
 	public Trajet chercherSolution(Ville d, Ville a, ArrayList<Ville> villes, ArrayList<TronconL>[][] matrice, ArrayList<Integer>[] liste) {
-		Trajet res = null;
+		Trajet res = new Trajet(d, a);
 		int[] trace = new int[villes.size()];
 		boolean[] dejaDev = new boolean[villes.size()];
 		int[] dejaDevCout = new int[villes.size()];
