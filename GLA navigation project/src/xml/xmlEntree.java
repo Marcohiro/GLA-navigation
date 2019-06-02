@@ -37,7 +37,6 @@ public class xmlEntree {
 	
 	public void exec(handler h) {
 		String f1 = "exemple_carte.xml";
-		//String f2 = "res_curr.xml";
 		xmlEntree en = new xmlEntree(f1);
 		SAXParserFactory factory = SAXParserFactory.newInstance();
 		try {
@@ -73,37 +72,11 @@ public class xmlEntree {
 		c.construireLesDonnees(troncons, p);
 		ArrayList<TronconL>[][] mat = c.getMatrice();
 		
-		for (int i = 0; i < villes.size(); i++) {
-			for (int j = 0; j < villes.size(); j++) {
-			//	System.out.print(mat[i][j] + " ");
-			}
-		//	System.out.println();
-		}
 		
-		//System.out.println(mat[0][3].get(0).getId());
-	//	System.out.println("=============================================================");
 		ArrayList<Integer>[] lis = c.getListe();
 		AEtoile algo = new AEtoile();
 		Trajet t = algo.chercherSolution(villes.get(0), villes.get(5), villes, mat, lis);
 		ArrayList<Integer> res = t.getItineraire();
-		for (int i = res.size()-1; i >= 0; i--) {
-			//System.out.println(	troncons.get(res.get(i)).getV1().getNom() + " => " + 
-				//				troncons.get(res.get(i)).getV2().getNom() + " cout : " +
-					//			troncons.get(res.get(i)).getLongueur());
-			
-		}
-		//System.out.println(c.distanceAerienne(villes.get(0), villes.get(4)));
-		
-		/*================================================================================*/
-		/*
-		String content = t.trajetToXML(troncons, routes);
-		try (FileWriter writer = new FileWriter(f2);
-			 BufferedWriter bw = new BufferedWriter(writer) ) {
-	        	bw.write(content);
-	    } 
-		catch (IOException e) {
-			System.err.format("IOException: %s%n", e);
-	    }*/
 		
 	}
 	
@@ -162,7 +135,9 @@ public class xmlEntree {
 			System.out.println(	troncons.get(res.get(i)).getV1().getNom() + " => " + 
 								troncons.get(res.get(i)).getV2().getNom() + " cout : " +
 								troncons.get(res.get(i)).getLongueur());
-			
+			t.ajouteTroncon(troncons.get(res.get(i)));
+			t.ajouteVille(troncons.get(res.get(i)).getV1());
+			if (i == 0) t.ajouteVille(troncons.get(res.get(i)).getV2());
 		}
 		System.out.println(c.distanceAerienne(depart, arrivee));
 		
