@@ -113,6 +113,7 @@ public class fileManager {
 	@SuppressWarnings("unchecked")
 	// Sauvegarde le fichier JSON de l'utilisateur
 	public void saveHistorique(String username, Historique h) {
+		System.out.println(username);
 		JSONObject obj = new JSONObject();
 		JSONArray vehicules = new JSONArray();
 		for (int i = 0; i < h.getVehicules().size(); i++) {
@@ -142,6 +143,7 @@ public class fileManager {
 		obj.put("trajets", trajets);
 
 		try (FileWriter file = new FileWriter("src/usersData/" + username + ".json")) {
+			System.out.println("SEakshldgasaaaaaaaaaaaaaaaaaa");
 			file.write(obj.toString());
 			file.flush();
 		} catch (IOException e) {

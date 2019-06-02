@@ -87,6 +87,11 @@ public class Trajet {
 		return this.villeArrivee;
 	}
 
+	//Ajoute ville a this.villeIntermediaires
+	public void ajouteVille(Ville x) {
+		this.villeIntermediaires.add(x);
+	}
+	
 	// Methode qui determine les villes intermediaires
 	public ArrayList<Ville> villesAParcourir() {
 		return this.villeIntermediaires;
@@ -143,14 +148,22 @@ public class Trajet {
 		String content = "<trajet>" + "\n";
 
 		content += "<ville-depart>" + this.villeDepart.getNom() + "</ville-depart>" + "\n";
-		for (int x : this.tronconParId) {
+		for (int i = this.tronconParId.size() - 1; i>=0; i--) {
+			Troncon tmp = troncons.get(this.tronconParId.get(i));
+			count++;
+			content += "<etape>" + "\n";
+			content += "<numero>" + count + "</numero>" + "\n";
+			content += "<route>" + routes.get(tmp.getRoute()).getNom() + "</route>" + "\n";
+			content += "<destination>" + tmp.getV2().getNom() + "</destination>" + "\n";
+		}
+		/*for (int x : this.tronconParId) {
 			count++;
 			content += "<etape>" + "\n";
 			content += "<numero>" + count + "</numero>" + "\n";
 			content += "<route>" + routes.get(troncons.get(x).getRoute()).getNom() + "</route>" + "\n";
 			content += "<destination>" + troncons.get(x).getV2().getNom() + "</destination>" + "\n";
 			content += "</etape>" + "\n";
-		}
+		}*/
 		content += "<ville-arrivee>" + this.villeArrivee.getNom() + "</ville-arrivee>" + "\n";
 		content += "</trajet>" + "\n";
 		return content;
