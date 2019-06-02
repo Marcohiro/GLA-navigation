@@ -1,9 +1,0 @@
-<trajet>
-<ville-depart>paris</ville-depart>
-<etape>
-<numero>1</numero>
-<route>a6</route>
-<destination>wissous</destination>
-</etape>
-<ville-arrivee>wissous</ville-arrivee>
-</trajet>
