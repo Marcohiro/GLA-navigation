@@ -142,8 +142,8 @@ public class fileManager {
 		obj.put("parametres", parametres);
 		obj.put("trajets", trajets);
 
-		try (FileWriter file = new FileWriter("src/usersData/" + username + ".json")) {
-			System.out.println("SEakshldgasaaaaaaaaaaaaaaaaaa");
+		try (FileWriter file = new FileWriter("src\\usersData\\" + username + ".json")) {
+			System.out.println(obj.toString());
 			file.write(obj.toString());
 			file.flush();
 		} catch (IOException e) {
