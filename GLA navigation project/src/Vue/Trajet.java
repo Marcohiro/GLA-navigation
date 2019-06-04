@@ -61,10 +61,9 @@ public class Trajet {
 					arriveeEgalDepart();
 				} else {
 					ArrayList<Ville> villes = hand.getVilles();
-					for(int i = 0; i<villes.size(); i++) {
-						if(villes.get(i).getNom() == comboBoxA.getValue())villeArr = villes.get(i);
-						else if(villes.get(i).getNom() == comboBoxD.getValue())villeDep = villes.get(i);
-					}
+
+					villeArr = villes.get(comboBoxA.getSelectionModel().getSelectedIndex());
+					villeDep = villes.get(comboBoxD.getSelectionModel().getSelectedIndex());
 					stage.setScene(ParametresVue.createScene(stage, user, villeDep, villeArr));
 				}
 			}

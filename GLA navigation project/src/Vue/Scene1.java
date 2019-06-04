@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 public class Scene1 {
 	
-	static Utilisateur user = new Utilisateur("offline", "offline", null, new Historique());
+	//static Utilisateur user = new Utilisateur("offline", "offline", null, new Historique());
 
 	public static Scene createScene(Stage stage, Utilisateur user) {
 		

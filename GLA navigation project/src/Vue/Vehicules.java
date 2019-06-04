@@ -30,7 +30,7 @@ import xml.xmlEntree;
 public class Vehicules {
 
 	static TableView<Vehicule> viewVehicules;
-	static Utilisateur user = new Utilisateur("offline", "pass", null, new Historique());
+	//static Utilisateur user = new Utilisateur("offline", "pass", null, new Historique());
 	static fileManager file = new fileManager();
 	static Ville villeArr, villeDep;
 	static Parametres p;
